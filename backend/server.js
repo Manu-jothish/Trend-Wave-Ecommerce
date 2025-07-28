@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser"
 import cors from 'cors'
 import userRoute from "./routes/userRoute.js"
 import productRoute from "./routes/productRoute.js"
+import orderRoute from "./routes/orderRoutes.js"
 
 
 dotenv.config()
@@ -23,6 +24,8 @@ app.use(cors())
 
 app.use("/api/user",userRoute)
 app.use("/api/product",productRoute)
+
+app.use("/api/order", orderRoute)
 
 app.use(notFound)
 app.use(errorHandler)

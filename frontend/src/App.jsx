@@ -12,6 +12,10 @@ import ProductListScreen from "./screens/Admin/ProductListScreen";
 import ProductAddScreen from "./screens/Admin/ProductAddScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PrivateRoute from "./screens/PrivateRoute";
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrder";
 
 function App() {
   return (
@@ -22,7 +26,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/page/:pageNumber" element={<HomeScreen />} />
-            <Route path="/search/:keyword/page/:pageNumber" element={<HomeScreen />} />
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              element={<HomeScreen />}
+            />
 
             <Route path="/product/:id" element={<ProductScreen />} />
 
@@ -30,7 +37,13 @@ function App() {
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/admin/productlist" element={<ProductListScreen />} />
             <Route path="/admin/addproduct" element={<ProductAddScreen />} />
-            <Route path="/cart" element={<CartScreen/>} />
+            <Route path="/cart" element={<CartScreen />} />
+
+            <Route path="" element={<PrivateRoute />}>
+              <Route path="/shipping" element={<ShippingScreen />} />
+              <Route path="/payment" element={<PaymentScreen />} />
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
+            </Route>
           </Routes>
         </Container>
       </main>
