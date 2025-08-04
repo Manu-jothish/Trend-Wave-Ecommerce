@@ -1,3 +1,4 @@
+import { data } from "react-router-dom";
 import { apiSlice } from "./apiSlice";
 
 const userApiSlice = apiSlice.injectEndpoints({
@@ -24,6 +25,20 @@ const userApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    deleteUser:builder.mutation({
+      query:(userId)=>({
+      url:`/api/user/${userId}`,
+      method:"DELETE"
+      }),
+    }),
+    getUser:builder.query({
+      query:()=>({
+       url:'/api/user',
+      }),
+      providesTags:['User'],
+      keepUnusedDataFor:5,
+    })
+
   }),
 });
 
@@ -31,4 +46,6 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
+  useDeleteUserMutation,
+ useGetUserQuery
 } = userApiSlice;

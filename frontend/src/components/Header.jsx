@@ -7,8 +7,7 @@ const Header = () => {
   const { userData } = useSelector((state) => state.auth);
   
   const {cartItems}=useSelector((state)=>state.cart)
-  console.log(cartItems);
-  
+    
 
   const logoutHandler = async () => {};
 
