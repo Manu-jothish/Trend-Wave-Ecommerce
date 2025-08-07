@@ -25,7 +25,7 @@ const getProduct = asyncHadler(async (req, res) => {
   const pagesize = 4;
   const page = Number(req.query.pageNumber) || 1;
   const keyWordCondition = req.query.keyword
-    ? { name: { $regex: req.query.keyword, $option: "i" } }
+    ? { name: { $regex: req.query.keyword, $options: "i" } }
     : {};
   const count = await Products.countDocuments({ ...keyWordCondition });
   const products = await Products.find({ ...keyWordCondition })
@@ -97,4 +97,38 @@ const createReview = asyncHadler(async (req, res) => {
     throw new Error("Product Not Found");
   }
 });
-export { addProduct, getProduct, getProductById, deleteProduct, createReview };
+
+const   editProduct = asyncHadler(async (req, res) => {
+  let { name, category, price, brand, countInStock, description } = req.body;
+  let product = await Products.findOne({ _id: req.params.id });
+  if (product) {
+    product.name = name || product.name;
+    product.price = price || product.price;
+    product.category = category || product.category;
+    product.brand = brand || product.brand;
+    product.countInStock = countInStock || product.countInStock;
+    product.description = description || product.description;
+    product.image = req.file ? req.file.path : product.image;
+
+    const editProduct = await product.save();
+
+    res.json(editProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product Not Found");
+  }
+});
+
+const getAllProducts = asyncHadler(async (req, res) => {
+  const products = await Products.find();
+  res.json(products);
+});
+export {
+  addProduct,
+  getProduct,
+  getProductById,
+  deleteProduct,
+  createReview,
+  editProduct,
+  getAllProducts,
+};

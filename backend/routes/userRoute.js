@@ -1,17 +1,25 @@
-import express from "express"
-import { loginUser,logoutUser,registerUser,getUsers,deleteUser } from "../controllers/userController.js"
-import { protect,admin } from "../middleware/authMiddleware.js"
+import express from "express";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  getUsers,
+  deleteUser,
+  updateUserProfile,
+  updateUser,
+  getUserById
+} from "../controllers/userController.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 
-const userRoute = express.Router()
+const userRoute = express.Router();
 
-userRoute.post('/',loginUser)
-userRoute.post('/register',registerUser)
-userRoute.get('/logout',logoutUser)
+userRoute.route("/").get(protect, admin, getUsers).post(loginUser);
+userRoute.post("/register", registerUser);
+userRoute.get("/logout", logoutUser);
 
-userRoute.route('/').get(protect,admin,getUsers)
+userRoute.route("/:id")
+  .delete(protect, admin, deleteUser)
+  .put(protect, admin, updateUser)
+  .get(protect, admin, getUserById)
 
-userRoute.route('/:id')
-      .delete(protect,admin,deleteUser)
-      
-
-export default userRoute 
+export default userRoute;

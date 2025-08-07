@@ -8,17 +8,25 @@ import {
   deleteProduct,
   getProduct,
   getProductById,
-  createReview
+  createReview,
+  editProduct,
+  getAllProducts,
 } from "../controllers/productConroller.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { admin, protect } from "../middleware/authMiddleware.js";
 
 productRoute
   .route("/")
   .post(productParser.single("image"), addProduct)
   .get(getProduct);
 
-productRoute.route("/:id").get(getProductById).delete(protect, deleteProduct);
+productRoute
+  .route("/:id")
+  .get(getProductById)
+  .delete(protect, deleteProduct)
+  .put(protect, admin, productParser.single("image"), editProduct);
 
 productRoute.route("/:id/review").post(protect, createReview);
+
+productRoute.route("/getAllProducts").get(protect, admin, getAllProducts);
 
 export default productRoute;

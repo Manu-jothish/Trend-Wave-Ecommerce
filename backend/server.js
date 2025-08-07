@@ -24,8 +24,7 @@ app.use(cors())
 
 app.use("/api/user",userRoute)
 app.use("/api/product",productRoute)
-
-app.use("/api/order", orderRoute)
+app.use("/api/orders", orderRoute)
 
 app.use(notFound)
 app.use(errorHandler)
