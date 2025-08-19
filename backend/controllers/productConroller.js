@@ -22,7 +22,7 @@ const addProduct = asyncHadler(async (req, res) => {
 });
 
 const getProduct = asyncHadler(async (req, res) => {
-  const pagesize = 4;
+  const pagesize = 5;
   const page = Number(req.query.pageNumber) || 1;
   const keyWordCondition = req.query.keyword
     ? { name: { $regex: req.query.keyword, $options: "i" } }

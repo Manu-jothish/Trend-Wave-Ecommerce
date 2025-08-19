@@ -23,7 +23,7 @@ const [logoutApiCall]=useLogoutUserMutation()
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand as={Link} to="/">
             TREND WAVE

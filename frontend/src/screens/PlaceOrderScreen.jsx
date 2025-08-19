@@ -10,6 +10,7 @@ import {
   useCreateOrderMutation,
   usePayOrderMutation,
 } from "../slices/orderApiSlice";
+import Loader from "../components/Loader";
 
 function PlaceOrderScreen() {
   const cart = useSelector((state) => state.cart);
@@ -22,10 +23,11 @@ function PlaceOrderScreen() {
 
   const placeOrderHandler = async () => {
     var options = {
-    
+     key: "rzp_test_R74VJr9rUfogaE",
+      key_secret: "nA7pkUl69COHH735P1I4VcCt",
       amount: parseInt(cart.totalPrice * 100),
       currency: "INR",
-      name: "business name", // your business name
+      name: "PRIYA", // your business name
       description: "Ecommers Transaction",
       handler: async function (response) {
         const pay = response.razorpay_payment_id;

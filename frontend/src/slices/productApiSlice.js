@@ -48,9 +48,10 @@ const productApiSlice = apiSlice.injectEndpoints({
     getAllProducts:builder.query({
       query:()=>({
         url:'/api/products/getAllProducts',
-        method:'GET'
+
       })
-    })
+    }),
+
   }),
 });
 

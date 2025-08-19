@@ -19,6 +19,9 @@ productRoute
   .post(productParser.single("image"), addProduct)
   .get(getProduct);
 
+productRoute.route("/getAllProducts").get(protect, admin, getAllProducts);
+
+
 productRoute
   .route("/:id")
   .get(getProductById)
@@ -27,6 +30,5 @@ productRoute
 
 productRoute.route("/:id/review").post(protect, createReview);
 
-productRoute.route("/getAllProducts").get(protect, admin, getAllProducts);
 
 export default productRoute;
