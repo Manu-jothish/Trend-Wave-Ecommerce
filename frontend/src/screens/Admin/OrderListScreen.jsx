@@ -3,13 +3,13 @@ import { Table, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
+import { FaTimes } from "react-icons/fa";
+import  {useGetOrdersQuery} from "../../slices/orderApiSlice"
+
+
 
 function OrderListScreen() {
-  let isLoading = false;
-  let error;
-
-  let orders = []
-
+ let {data:orders,isLoading,error} = useGetOrdersQuery
   return (
     <>
       <h1>Orders</h1>
